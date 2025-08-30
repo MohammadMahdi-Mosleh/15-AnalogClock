@@ -6,24 +6,29 @@ const hourHand = document.querySelector(".hour-hand");
 const switchBtn = document.querySelector(".switch-btn");
 function updateTime() {
     const now = new Date();
-    if (secondHand === null || minuteHand === null || hourHand === null)
-        return;
-    // SECOND
     const second = now.getSeconds();
-    secondHand.style.transform = `rotate(${second * 6}deg)`;
-    // MINUTE
+    const ms = now.getMilliseconds();
+    const secondDegrees = second * 6 + ms * 0.006;
+    secondHand.style.transform = `translate(-50%, 0) rotate(${secondDegrees}deg)`;
     const minute = now.getMinutes();
-    minuteHand.style.transform = `rotate(${minute * 6}deg)`;
-    // HOUR
+    const minuteDegrees = minute * 6 + second * 0.1;
+    minuteHand.style.transform = `translate(-50%, 0) rotate(${minuteDegrees}deg)`;
     const hour = now.getHours();
-    hourHand.style.transform = `rotate(${hour * 6}deg)`;
+    const hourDegrees = (hour % 12) * 30 + minute * 0.5;
+    hourHand.style.transform = `translate(-50%, 0) rotate(${hourDegrees}deg)`;
 }
 setInterval(updateTime, 1000);
 updateTime();
 function switchTheme() {
-    clock === null || clock === void 0 ? void 0 : clock.classList.toggle("active");
+    clock.classList.toggle("active");
     minuteHand.classList.toggle("active");
     hourHand.classList.toggle("active");
     switchBtn.classList.toggle("active");
+    if (switchBtn.textContent.toLowerCase() === "dark mode") {
+        switchBtn.textContent = "lite mode";
+    }
+    else {
+        switchBtn.textContent = "dark mode";
+    }
 }
 switchBtn.addEventListener("click", switchTheme);
