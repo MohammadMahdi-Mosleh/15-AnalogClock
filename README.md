@@ -1,4 +1,4 @@
-# (Analog Clock Project ⏰)[https://mohammadmahdi-mosleh.github.io/15-AnalogClock/]
+# [Analog Clock Project ⏰](https://mohammadmahdi-mosleh.github.io/15-AnalogClock/)
 
 A responsive analog clock built with HTML, CSS, and TypeScript.
 * Shows real-time hour, minute, and second hands.
